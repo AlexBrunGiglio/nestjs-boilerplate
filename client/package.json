@@ -1,0 +1,14 @@
+{
+  "name": "nest-starter",
+  "version": "1.0.0",
+  "description": "API Client code generated from nest-starter project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Alexandre Brun-Giglio",
+  "license": "ISC"
+}
