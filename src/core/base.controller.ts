@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { HttpStatus, UnauthorizedException } from '@nestjs/common';
 import { GenericResponse } from './generic-response';
-import { AuthToolsService } from '../auth/services/tools.service';
+import { AuthToolsService } from '../helpers/auth-helper';
 
 export abstract class BaseController {
   sendResponse(

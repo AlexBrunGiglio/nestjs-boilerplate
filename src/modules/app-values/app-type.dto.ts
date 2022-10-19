@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { BaseSearchRequest } from '../../common/base-search-request';
-import { GenericResponse } from '../../common/generic-response';
+import { BaseSearchRequest } from '../../core/base-search-request';
+import { GenericResponse } from '../../core/generic-response';
 import { AppValueDto } from './app-value.dto';
 
 export class AppTypeDto {

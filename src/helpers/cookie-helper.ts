@@ -1,5 +1,5 @@
 import { CookieOptions, Request, Response } from 'express';
-import { refreshTokenLsKey } from '../../../shared/shared-constant';
+import { refreshTokenLsKey } from '../types/enums';
 
 export class CookieHelpers {
   static setCookie(

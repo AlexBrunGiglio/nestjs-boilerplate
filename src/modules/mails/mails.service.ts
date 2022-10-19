@@ -1,12 +1,11 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { GenericResponse } from '../../common/generic-response';
-import { Environment } from '../../environment/environment';
+import { GenericResponse } from '../../core/generic-response'; import { Environment } from '../../environment/environment';
 import { UserDto } from '../users/user.dto';
 
 @Injectable()
 export class MailsService {
-  constructor(private mailerService: MailerService) {}
+  constructor(private mailerService: MailerService) { }
 
   async sendUserConfirmation(
     user: UserDto,

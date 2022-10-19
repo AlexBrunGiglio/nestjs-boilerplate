@@ -9,12 +9,12 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
-import { BaseController } from '../common/base.controller';
-import { ApiDocs } from '../common/decorators/api.decorator';
-import { GenericResponse } from '../common/generic-response';
+import { BaseController } from '../../core/base.controller';
+import { GenericResponse } from '../../core/generic-response';
+import { ApiDocs } from '../../decorators/api.decorator';
+import { AuthToolsService } from '../../helpers/auth-helper';
 import { LoginResponse, LoginViewModel, RegisterRequest } from './auth-request';
 import { AuthService } from './auth.service';
-import { AuthToolsService } from './services/tools.service';
 
 @Controller('auth')
 @ApiTags('auth')

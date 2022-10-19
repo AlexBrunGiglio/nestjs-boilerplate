@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { BaseDto } from '../../common/base.dto';
-import { GenericResponse } from '../../common/generic-response';
-import { BaseSearchResponse } from '../../common/search-response';
+import { BaseDto } from '../../core/base.dto';
+import { GenericResponse } from '../../core/generic-response';
+import { BaseSearchResponse } from '../../core/search-response';
 
 export class FileDto extends BaseDto {
   @ApiProperty()

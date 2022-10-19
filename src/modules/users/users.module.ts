@@ -1,9 +1,9 @@
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserRole } from '../users-roles/user-role.entity';
+import { UsersRolesController } from '../users-roles/user-roles.controller';
+import { UserRoleService } from '../users-roles/user-roles.service';
 import { User } from './user.entity';
-import { UserRole } from './users-roles/user-role.entity';
-import { UsersRolesController } from './users-roles/user-roles.controller';
-import { UserRoleService } from './users-roles/user-roles.service';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
@@ -15,4 +15,4 @@ import { UsersService } from './users.service';
   providers: [UsersService, UserRoleService],
   exports: [UsersService, UserRoleService],
 })
-export class UserModule {}
+export class UserModule { }

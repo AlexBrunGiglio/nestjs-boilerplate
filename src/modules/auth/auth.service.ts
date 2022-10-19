@@ -7,18 +7,18 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from '../../../shared/jwt-payload';
-import { RolesList } from '../../../shared/shared-constant';
-import { AppError, AppErrorWithMessage } from '../common/app-error';
-import { GenericResponse } from '../common/generic-response';
-import { MainHelpers } from '../common/main-helper';
-import { Environment } from '../environment/environment';
-import { MailsService } from '../modules/mails/mails.service';
-import { UserRoleService } from '../modules/users/users-roles/user-roles.service';
-import { UserDto } from '../modules/users/user.dto';
-import { UsersService } from '../modules/users/users.service';
 import { LoginResponse, LoginViewModel, RegisterRequest } from './auth-request';
 import { bcrypt } from 'bcrypt';
+import { JwtPayload } from 'jsonwebtoken';
+import { AppError, AppErrorWithMessage } from '../../core/app-error';
+import { GenericResponse } from '../../core/generic-response';
+import { Environment } from '../../environment/environment';
+import { MainHelpers } from '../../helpers/main-helper';
+import { RolesList } from '../../types/enums';
+import { MailsService } from '../mails/mails.service';
+import { UserRoleService } from '../users-roles/user-roles.service';
+import { UserDto } from '../users/user.dto';
+import { UsersService } from '../users/users.service';
 
 interface TokenResponse {
   accesToken: string;

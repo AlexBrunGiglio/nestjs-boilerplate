@@ -10,12 +10,12 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { RolesList } from '../../../../../shared/shared-constant';
-import { BaseSearchRequest } from '../../../common/base-search-request';
-import { BaseController } from '../../../common/base.controller';
-import { AllowRoles } from '../../../common/decorators/allow-roles.decorator';
-import { ApiDocs } from '../../../common/decorators/api.decorator';
-import { GenericResponse } from '../../../common/generic-response';
+import { BaseSearchRequest } from '../../core/base-search-request';
+import { BaseController } from '../../core/base.controller';
+import { GenericResponse } from '../../core/generic-response';
+import { AllowRoles } from '../../decorators/allow-roles.decorator';
+import { ApiDocs } from '../../decorators/api.decorator';
+import { RolesList } from '../../types/enums';
 import {
   GetUserRoleResponse,
   GetUserRolesRequest,

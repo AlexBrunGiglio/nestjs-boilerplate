@@ -8,8 +8,8 @@ import {
   OneToMany,
 } from 'typeorm';
 import { UserDto } from './user.dto';
-import { UserRole } from './users-roles/user-role.entity';
 import { File } from '../files/file.entity';
+import { UserRole } from '../users-roles/user-role.entity';
 
 @Entity({ name: 'users' })
 export class User {

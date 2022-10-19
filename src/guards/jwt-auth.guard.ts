@@ -7,13 +7,10 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { List } from 'linqts';
-import { refreshTokenLsKey } from '../../../../shared/shared-constant';
-import { UsersService } from '../../modules/users/users.service';
-import { CookieHelpers } from '../cookie-helper';
-import {
-  AuthToolsService,
-  DecodeTokenResponse,
-} from '../services/tools.service';
+import { AuthToolsService, DecodeTokenResponse } from '../helpers/auth-helper';
+import { CookieHelpers } from '../helpers/cookie-helper';
+import { UsersService } from '../modules/users/users.service';
+import { refreshTokenLsKey } from '../types/enums';
 import { ExpiredTokenException } from './expired-token';
 
 @Injectable()

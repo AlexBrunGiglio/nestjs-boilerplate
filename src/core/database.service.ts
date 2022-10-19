@@ -1,17 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import {
-  AppTypes,
-  FileCategory,
-  Gender,
-  PresenceStatut,
-  RolesList,
-} from '../../../shared/shared-constant';
+
 import { AppErrorWithMessage } from './app-error';
 import { ReferentialService } from '../modules/app-values/referential.service';
-import { UserRoleDto } from '../modules/users/users-roles/user-role.dto';
-import { UserRoleService } from '../modules/users/users-roles/user-roles.service';
 import { UserDto } from '../modules/users/user.dto';
 import { UsersService } from '../modules/users/users.service';
+import { UserRoleService } from '../modules/users-roles/user-roles.service';
+import { AppTypes, FileCategory, Gender, PresenceStatut, RolesList } from '../types/enums';
+import { UserRoleDto } from '../modules/users-roles/user-role.dto';
 
 @Injectable()
 export class DatabaseService {
@@ -19,7 +14,7 @@ export class DatabaseService {
     private userService: UsersService,
     private userRoleService: UserRoleService,
     private referentialService: ReferentialService,
-  ) {}
+  ) { }
 
   public async seedDB() {
     console.log('\x1b[34m', '[Nest] DBService => Seed database');
@@ -60,34 +55,34 @@ export class DatabaseService {
     const typesWithValues: {
       typeCode: string;
       typeLabel: string;
-      values: { label: string; order: number; code?: string }[];
+      values: { label: string; order: number; code?: string; }[];
     }[] = [
-      {
-        typeCode: AppTypes.Gender,
-        typeLabel: 'Sexe',
-        values: [
-          { label: 'Homme', order: 1, code: Gender.Male },
-          { label: 'Femme', order: 2, code: Gender.Female },
-        ],
-      },
-      {
-        typeCode: AppTypes.PresenceStatut,
-        typeLabel: 'Status en ligne',
-        values: [
-          { label: 'En ligne', order: 1, code: PresenceStatut.Online },
-          { label: 'Hors ligne', order: 2, code: PresenceStatut.Offline },
-          { label: 'Absent', order: 3, code: PresenceStatut.Missing },
-          { label: 'Occupé', order: 4, code: PresenceStatut.Busy },
-        ],
-      },
-      {
-        typeCode: AppTypes.FileCategoryCode,
-        typeLabel: 'Catégorie des fichiers',
-        values: [
-          { label: 'Photo de profile', order: 1, code: FileCategory.MainPhoto },
-        ],
-      },
-    ];
+        {
+          typeCode: AppTypes.Gender,
+          typeLabel: 'Sexe',
+          values: [
+            { label: 'Homme', order: 1, code: Gender.Male },
+            { label: 'Femme', order: 2, code: Gender.Female },
+          ],
+        },
+        {
+          typeCode: AppTypes.PresenceStatut,
+          typeLabel: 'Status en ligne',
+          values: [
+            { label: 'En ligne', order: 1, code: PresenceStatut.Online },
+            { label: 'Hors ligne', order: 2, code: PresenceStatut.Offline },
+            { label: 'Absent', order: 3, code: PresenceStatut.Missing },
+            { label: 'Occupé', order: 4, code: PresenceStatut.Busy },
+          ],
+        },
+        {
+          typeCode: AppTypes.FileCategoryCode,
+          typeLabel: 'Catégorie des fichiers',
+          values: [
+            { label: 'Photo de profile', order: 1, code: FileCategory.MainPhoto },
+          ],
+        },
+      ];
     for (const typeWithValues of typesWithValues) {
       await this.referentialService.createOrUpdateTypeWithValues(
         typeWithValues.typeCode,

@@ -10,7 +10,12 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { RolesList } from '../../../../shared/shared-constant';
+import { BaseController } from '../../core/base.controller';
+import { GenericResponse } from '../../core/generic-response';
+import { AllowRoles } from '../../decorators/allow-roles.decorator';
+import { ApiDocs } from '../../decorators/api.decorator';
+import { UserLogged } from '../../decorators/user-logged.decorator';
+import { RolesList } from '../../types/enums';
 import {
   AppTypeDto,
   FindAppTypesRequest,
@@ -23,12 +28,7 @@ import {
   GetAppValueResponse,
   MultipleAppValuesRequest,
 } from './app-value.dto';
-import { BaseController } from '../../common/base.controller';
-import { GenericResponse } from '../../common/generic-response';
 import { ReferentialService } from './referential.service';
-import { UserLogged } from '../../common/decorators/user-logged.decorator';
-import { ApiDocs } from '../../common/decorators/api.decorator';
-import { AllowRoles } from '../../common/decorators/allow-roles.decorator';
 
 @Controller('app-types')
 @ApiTags('referential')

@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { BaseEntity } from '../../common/base.entity';
+import { BaseEntity } from '../../core/base.entity';
 import { StatDto } from './stat.dto';
 
 @Entity({ name: 'stats' })

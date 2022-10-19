@@ -7,11 +7,11 @@ import {
 } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from '../../../../shared/jwt-payload';
-import { ApplicationBaseService } from '../../common/base-service';
-import { UserDto } from '../../modules/users/user.dto';
 import { Request, Response } from 'express';
-import { AppErrorWithMessage } from '../../common/app-error';
+import { AppErrorWithMessage } from '../core/app-error';
+import { ApplicationBaseService } from '../core/base-service';
+import { UserDto } from '../modules/users/user.dto';
+import { JwtPayload } from '../types/jwt-payload';
 
 export type JwtDecodeError =
   | 'TokenExpiredError'

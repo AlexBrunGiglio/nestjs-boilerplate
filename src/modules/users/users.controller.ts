@@ -12,7 +12,6 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { BaseController } from '../../common/base.controller';
 import {
   GetUserResponse,
   GetUsersRequest,
@@ -20,16 +19,17 @@ import {
   UserDto,
 } from './user.dto';
 import { UsersService } from './users.service';
-import { RolesList } from '../../../../shared/shared-constant';
-import { GenericResponse } from '../../common/generic-response';
-import { AuthToolsService } from '../../auth/services/tools.service';
-import { BaseSearchRequest } from '../../common/base-search-request';
 import { User } from './user.entity';
 import { Like } from 'typeorm';
-import { SharedService } from '../../../../shared/shared-service';
-import { AllowRoles } from '../../common/decorators/allow-roles.decorator';
-import { ApiDocs } from '../../common/decorators/api.decorator';
-import { UserLogged } from '../../common/decorators/user-logged.decorator';
+import { BaseController } from '../../core/base.controller';
+import { BaseSearchRequest } from '../../core/base-search-request';
+import { GenericResponse } from '../../core/generic-response';
+import { AllowRoles } from '../../decorators/allow-roles.decorator';
+import { ApiDocs } from '../../decorators/api.decorator';
+import { UserLogged } from '../../decorators/user-logged.decorator';
+import { AuthToolsService } from '../../helpers/auth-helper';
+import { SharedService } from '../../helpers/shared-service';
+import { RolesList } from '../../types/enums';
 
 @ApiTags('users')
 @Controller('users')

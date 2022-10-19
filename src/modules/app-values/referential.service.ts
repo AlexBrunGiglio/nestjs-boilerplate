@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, FindManyOptions, In, Repository } from 'typeorm';
+import { FindOptionsWhere, FindManyOptions, In, Repository } from 'typeorm';
+import { AppErrorWithMessage, AppError } from '../../core/app-error';
+import { BaseSearchRequest } from '../../core/base-search-request';
+import { ApplicationBaseService } from '../../core/base-service';
+import { GenericResponse } from '../../core/generic-response';
 import {
   AppTypeDto,
   FindAppTypesRequest,
@@ -15,10 +19,6 @@ import {
   GetAppValuesResponse,
 } from './app-value.dto';
 import { AppValue } from './app-value.entity';
-import { AppError, AppErrorWithMessage } from '../../common/app-error';
-import { BaseSearchRequest } from '../../common/base-search-request';
-import { ApplicationBaseService } from '../../common/base-service';
-import { GenericResponse } from '../../common/generic-response';
 
 @Injectable()
 export class ReferentialService extends ApplicationBaseService {
@@ -112,10 +112,10 @@ export class ReferentialService extends ApplicationBaseService {
         if (appType && appType.id) appTypeId = appType.id;
       }
       if (appTypeId) {
-        (conditions.where as FindConditions<AppValue>).appTypeId = appTypeId;
+        (conditions.where as FindOptionsWhere<AppValue>).appTypeId = appTypeId;
       }
       if (codes && codes.length > 0)
-        (conditions.where as FindConditions<AppValue>).code = In(codes);
+        (conditions.where as FindOptionsWhere<AppValue>).code = In(codes);
       const appValues = await this.appValuesRepository.find(conditions);
       if (appValues) {
         response.appValues = appValues.map(x => x.toDto());
@@ -271,7 +271,7 @@ export class ReferentialService extends ApplicationBaseService {
   public async createOrUpdateTypeWithValues(
     typeCode: string,
     typeLabel: string,
-    values: { label: string; order: number; code?: string }[],
+    values: { label: string; order: number; code?: string; }[],
     removeOldValues: boolean,
   ) {
     try {
