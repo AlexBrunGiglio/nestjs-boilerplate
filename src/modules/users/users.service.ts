@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
-import { ApplicationBaseModelService, LinqQueryWrapper } from '../../core/base-model.service';
+import { ApplicationBaseModelService } from '../../core/base-model.service';
 import { MainHelpers } from '../../helpers/main-helper';
 
 import { GetUserResponse, GetUsersResponse, UserDto } from './user.dto';
@@ -36,7 +36,7 @@ export class UsersService extends ApplicationBaseModelService<
   async createOrUpdate(user: UserDto): Promise<GetUserResponse> {
     const response = new GetUserResponse();
     try {
-      let userEntity = await this.repository.findOne({ id: user.id });
+      let userEntity = await this.repository.findOne({ where: { id: user.id } });
       if (!userEntity) {
         userEntity = new User();
       }
@@ -60,7 +60,7 @@ export class UsersService extends ApplicationBaseModelService<
   }
 
   async findOne(
-    conditions: FindOneOptions<User> | LinqQueryWrapper<User>,
+    conditions: FindOneOptions<User>,
     getPassword = false,
   ): Promise<GetUserResponse> {
     return super.findOne(conditions, getPassword);

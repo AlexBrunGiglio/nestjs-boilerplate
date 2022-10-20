@@ -63,8 +63,8 @@ export class UserRoleService extends ApplicationBaseModelService<
     return await super.delete(ids);
   }
 
-  public async archive(ids: string[]) {
-    this.userRolesList = [];
-    return await super.archive(ids);
-  }
+  // public async archive(ids: string[]) {
+  //   this.userRolesList = [];
+  //   return await super.archive(ids);
+  // }
 }

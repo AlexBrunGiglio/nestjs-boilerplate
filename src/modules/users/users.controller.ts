@@ -106,24 +106,24 @@ export class UsersController extends BaseController {
     resStatus: HttpStatus.OK,
     resType: GenericResponse,
   })
-  async archiveUsers(
-    @Query('userIds') userIds: string,
-  ): Promise<GenericResponse> {
-    return await this.usersService.archive(userIds.split(','));
-  }
+  // async archiveUsers(
+  //   @Query('userIds') userIds: string,
+  // ): Promise<GenericResponse> {
+  //   return await this.usersService.archive(userIds.split(','));
+  // }
 
-  @Patch('archiveMyAccount')
-  @AllowRoles(RolesList.Visitor)
-  @ApiDocs({
-    summary: 'Archive my account',
-    operationId: 'archiveMyAccount',
-    resStatus: HttpStatus.OK,
-    resType: GenericResponse,
-  })
-  async archiveMAccount(): Promise<GenericResponse> {
-    const payload = this.checkUserPayload(this.authToolsService);
-    return await this.usersService.archiveOne(payload.id);
-  }
+  // @Patch('archiveMyAccount')
+  // @AllowRoles(RolesList.Visitor)
+  // @ApiDocs({
+  //   summary: 'Archive my account',
+  //   operationId: 'archiveMyAccount',
+  //   resStatus: HttpStatus.OK,
+  //   resType: GenericResponse,
+  // })
+  // async archiveMAccount(): Promise<GenericResponse> {
+  //   const payload = this.checkUserPayload(this.authToolsService);
+  //   return await this.usersService.archiveOne(payload.id);
+  // }
 
   @Delete()
   @AllowRoles(RolesList.Admin)

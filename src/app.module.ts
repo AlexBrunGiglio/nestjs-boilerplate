@@ -1,6 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Environment } from './environment/environment';
+import { AppValuesModule } from './modules/app-values/app-values.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { FilesModule } from './modules/files/files.module';
+import { LogsModule } from './modules/logs/logs.module';
+import { MailModule } from './modules/mails/mails.module';
+import { StatsModule } from './modules/stats/stats.module';
+import { UserModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -17,6 +24,13 @@ import { Environment } from './environment/environment';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       timezone: 'utc',
     }),
+    AuthModule,
+    UserModule,
+    StatsModule,
+    MailModule,
+    FilesModule,
+    LogsModule,
+    AppValuesModule
   ],
   controllers: [],
   providers: [],
