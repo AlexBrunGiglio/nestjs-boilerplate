@@ -19,7 +19,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "nswag": "ts-node --project ./swagger/tools.tsconfig.json ./swagger/nswag-generate-client.ts"
+    "nswag": "ts-node --project ./swagger/tools.tsconfig.json ./swagger/nswag-generate-client.ts",
+    "open-back-home": "wait-on http-get://localhost:3088/swagger && open-cli http://localhost:3088/swagger"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.8.1",
