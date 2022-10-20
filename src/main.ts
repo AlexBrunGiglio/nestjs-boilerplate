@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { Environment } from './environment/environment';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
@@ -18,7 +19,7 @@ async function bootstrap() {
     res.send(document);
   });
 
-  SwaggerModule.setup('swagger', app, null, {
+  SwaggerModule.setup('swagger', app, document, {
     swaggerUrl: `/api/docs/swagger.json`,
     explorer: true,
     swaggerOptions: {
@@ -29,6 +30,6 @@ async function bootstrap() {
   });
 
   await app.listen(Environment.app_port);
-  console.log('\x1b[36m%s\x1b[0m', '[Nest] Server started on port ' + Environment.app_port + ' => http://localhost:' + Environment.app_port + ' 🚀');
+  console.log('\x1b[36m%s\x1b[0m', '[Nest] Server started on port ' + Environment.app_port + ' => http://localhost:' + Environment.app_port + ' API docs on http://localhost:8000/swagger 🚀');
 }
 bootstrap();

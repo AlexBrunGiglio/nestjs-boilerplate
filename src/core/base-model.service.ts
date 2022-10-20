@@ -47,11 +47,6 @@ export abstract class ApplicationBaseModelService<
       !this.modelOptions.getManyResponseField ||
       !this.modelOptions.getOneResponseField
     ) {
-      console.error(
-        'Please initialize model options to use ApplicationBaseModelService - modelOptions',
-        this.modelOptions,
-        this.constructor.name,
-      );
       return false;
     }
     if (typeof this.modelOptions.archiveField === 'undefined')
