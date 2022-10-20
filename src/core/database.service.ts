@@ -17,7 +17,7 @@ export class DatabaseService {
   ) { }
 
   public async seedDB() {
-    console.log('\x1b[34m', '[Nest] DBService => Seed database');
+    console.log('\x1b[36m%s\x1b[0m', '[Nest] DBService => Seed database');
     await this.createDefaultTypes();
     await this.createDefaultRoles();
     await this.createDefaultUsers();

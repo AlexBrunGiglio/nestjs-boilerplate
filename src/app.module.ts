@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DatabaseService } from './core/database.service';
 import { Environment } from './environment/environment';
 import { AppValuesModule } from './modules/app-values/app-values.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -30,9 +32,20 @@ import { UserModule } from './modules/users/users.module';
     MailModule,
     FilesModule,
     LogsModule,
-    AppValuesModule
+    AppValuesModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [],
-  providers: [],
+  providers: [DatabaseService],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private dbService: DatabaseService,
+  ) {
+    this.init();
+  }
+
+  private async init() {
+    await this.dbService.seedDB();
+  }
+}
