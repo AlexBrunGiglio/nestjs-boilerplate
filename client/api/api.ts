@@ -1,0 +1,15 @@
+export * from './auth.service';
+import { AuthService } from './auth.service';
+export * from './files.service';
+import { FilesService } from './files.service';
+export * from './logs.service';
+import { LogsService } from './logs.service';
+export * from './referential.service';
+import { ReferentialService } from './referential.service';
+export * from './stats.service';
+import { StatsService } from './stats.service';
+export * from './users.service';
+import { UsersService } from './users.service';
+export * from './usersRoles.service';
+import { UsersRolesService } from './usersRoles.service';
+export const APIS = [AuthService, FilesService, LogsService, ReferentialService, StatsService, UsersService, UsersRolesService];
