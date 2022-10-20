@@ -5,7 +5,7 @@ import { Environment } from '../src/environment/environment';
 
 const apiSwaggerUrl = 'http://localhost:' + Environment.app_port + '/api/docs/swagger.json';
 const swaggerCodegenConfig = path.join(__dirname, 'swagger-codegen-config.json');
-const swaggerFrontOutput = path.join(__dirname, '..', 'client');
+const swaggerFrontOutput = path.join(__dirname, '..', 'client', 'codegen');
 
 if (!fs.existsSync(swaggerCodegenConfig)) {
     console.error(`Impossible de générer le code client : le fichier de configuration ${swaggerCodegenConfig} n'existe pas !`);
