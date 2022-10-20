@@ -32,17 +32,56 @@
 $ npm install
 ```
 
+## Configuring app
+
+Copy `env.default.json` data in a new file named `env.json`, and complete with your information.
+
+```json
+{
+    "app_port": "8000",
+    "db_host": "localhost",
+    "db_port": 3306,
+    "db_user": "root",
+    "db_password": "",
+    "db_name": "",
+    "db_log_enabled": false,
+    "ApiScheme": "http",
+    "EnvName": "development",
+    "smtp_host": "contact@alexandrebrungiglio.fr",
+    "smtp_user": "",
+    "smtp_password": "",
+    "app_origin_url": "",
+    "access_token_secret": "",
+    "refresh_token_secret": ""
+}
+```
+
+Create a database with same name as you defined in env.json. 
+
 ## Running the app
 
 ```bash
 # development
 $ npm run start
 
-# watch mode
-$ npm run start:dev
-
 # production mode
 $ npm run start:prod
+```
+
+## Swagger UI integration
+
+You can get a swagger ui docs on project url http://localhost:8000/swagger (default). Or use cli command.
+
+```bash
+# open swagger ui docs
+$ npm run nswag
+```
+
+You can generate client code with swagger-codegen. Code will be available in `./client`. You will be able to deploy client code into a npmjs package and publish it. 
+
+```bash
+# generate client code
+$ npm run nswag
 ```
 
 ## Test
@@ -57,17 +96,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
