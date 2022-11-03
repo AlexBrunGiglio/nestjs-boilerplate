@@ -98,7 +98,7 @@ export class UsersController extends BaseController {
     return await this.usersService.createOrUpdate(userDto);
   }
 
-  @Patch('archiveUsers')
+  @Patch('archive')
   @AllowRoles(RolesList.Admin)
   @ApiDocs({
     summary: 'Archive user',
@@ -106,24 +106,19 @@ export class UsersController extends BaseController {
     resStatus: HttpStatus.OK,
     resType: GenericResponse,
   })
-  // async archiveUsers(
-  //   @Query('userIds') userIds: string,
-  // ): Promise<GenericResponse> {
-  //   return await this.usersService.archive(userIds.split(','));
-  // }
 
-  // @Patch('archiveMyAccount')
-  // @AllowRoles(RolesList.Visitor)
-  // @ApiDocs({
-  //   summary: 'Archive my account',
-  //   operationId: 'archiveMyAccount',
-  //   resStatus: HttpStatus.OK,
-  //   resType: GenericResponse,
-  // })
-  // async archiveMAccount(): Promise<GenericResponse> {
-  //   const payload = this.checkUserPayload(this.authToolsService);
-  //   return await this.usersService.archiveOne(payload.id);
-  // }
+  @Delete()
+  @AllowRoles(RolesList.Visitor)
+  @ApiDocs({
+    summary: 'Delete account',
+    operationId: 'deleteAccount',
+    resStatus: HttpStatus.OK,
+    resType: GenericResponse,
+  })
+  async deleteAccount(): Promise<GenericResponse> {
+    const payload = this.checkUserPayload(this.authToolsService);
+    return await this.usersService.deleteOne(payload.id);
+  }
 
   @Delete()
   @AllowRoles(RolesList.Admin)
@@ -137,18 +132,5 @@ export class UsersController extends BaseController {
     @Query('userIds') userIds: string,
   ): Promise<GenericResponse> {
     return await this.usersService.delete(userIds.split(','));
-  }
-
-  @Delete('deleteMyAccount')
-  @AllowRoles(RolesList.Visitor)
-  @ApiDocs({
-    summary: 'Delete account',
-    operationId: 'deleteAccount',
-    resStatus: HttpStatus.OK,
-    resType: GenericResponse,
-  })
-  async deleteAccount(): Promise<GenericResponse> {
-    const payload = this.checkUserPayload(this.authToolsService);
-    return await this.usersService.deleteOne(payload.id);
   }
 }

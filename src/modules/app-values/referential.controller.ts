@@ -30,14 +30,14 @@ import {
 } from './app-value.dto';
 import { ReferentialService } from './referential.service';
 
-@Controller('app-types')
+@Controller('referential')
 @ApiTags('referential')
 export class ReferentialController extends BaseController {
   constructor(private referentialService: ReferentialService) {
     super();
   }
 
-  @Get('getOneAppType/:id')
+  @Get('app-types/:id')
   @UserLogged()
   @ApiDocs({
     summary: 'Get App Type',
@@ -49,7 +49,7 @@ export class ReferentialController extends BaseController {
     return await this.referentialService.getOneAppType(id);
   }
 
-  @Get('getTypeValues')
+  @Get('app-types')
   @UserLogged()
   @ApiDocs({
     summary: 'Get values of a type',
@@ -63,7 +63,7 @@ export class ReferentialController extends BaseController {
     return await this.referentialService.getTypeValues(request);
   }
 
-  @Get('getMultipleTypeValues')
+  @Get('app-types/multiple')
   @UserLogged()
   @ApiDocs({
     summary: 'Get multiple values of a type',
@@ -77,7 +77,7 @@ export class ReferentialController extends BaseController {
     return await this.referentialService.getMultipleTypeValues(request);
   }
 
-  @Post('insertOrUpdateAppValue')
+  @Post('app-values')
   @AllowRoles(RolesList.Admin)
   @ApiDocs({
     summary: 'insert or update App Value',
@@ -91,7 +91,7 @@ export class ReferentialController extends BaseController {
     return await this.referentialService.insertOrUpdateAppValue(appValueDto);
   }
 
-  @Post('insertOrUpdateAppType')
+  @Post('app-types')
   @AllowRoles(RolesList.Admin)
   @ApiDocs({
     summary: 'insert or update App Type',
@@ -109,7 +109,7 @@ export class ReferentialController extends BaseController {
     );
   }
 
-  @Delete('removeAppValues')
+  @Delete('app-values')
   @AllowRoles(RolesList.Admin)
   @ApiDocs({
     summary: 'remove App Values',
@@ -126,7 +126,7 @@ export class ReferentialController extends BaseController {
     );
   }
 
-  @Patch('disableAppValues')
+  @Patch('app-values')
   @AllowRoles(RolesList.Admin)
   @ApiDocs({
     summary: 'disable App Values',
