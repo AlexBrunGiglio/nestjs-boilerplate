@@ -19,7 +19,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "nswag": "ts-node --project ./swagger/tools.tsconfig.json ./swagger/nswag-generate-client.ts",
-    "docs": "wait-on http-get://localhost:8000/swagger && open-cli http://localhost:8000/swagger"
+    "docs": "wait-on http-get://localhost:8000/swagger && open-cli http://localhost:8000/swagger",
+    "crud": "node ./scripts/createModule.js"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.8.1",
