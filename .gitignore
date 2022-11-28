@@ -3,6 +3,8 @@
 /node_modules
 /client/lib
 
+/src/environment/env.json
+
 # Logs
 *.log
 npm-debug.log*
