@@ -42,6 +42,8 @@ export class UserDto {
   accountActivated?: boolean;
   @ApiPropertyOptional({ type: () => FileDto, isArray: true })
   files?: FileDto[];
+  @ApiPropertyOptional()
+  googleId?: string;
 }
 
 export class GetUserResponse extends GenericResponse {

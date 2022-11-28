@@ -60,6 +60,8 @@ export class User {
     { cascade: true },
   )
   files?: File[];
+  @Column('varchar', { name: 'googleId', nullable: true })
+  googleId?: string;
 
   public toDto(getPassword = false): UserDto {
     return {
@@ -96,6 +98,7 @@ export class User {
     this.initial = dto.initial;
     this.imgUrl = dto.imgUrl;
     this.accountActivated = dto.accountActivated;
+    this.googleId = dto.googleId;
 
     if (dto.roles) {
       this.roles = dto.roles.map<UserRole>(xDto => {

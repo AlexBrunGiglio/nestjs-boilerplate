@@ -1,17 +1,21 @@
 import {
   Body,
   Controller,
+  Get,
   HttpStatus,
   Param,
   Patch,
   Post,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
 import { BaseController } from '../../core/base.controller';
 import { GenericResponse } from '../../core/generic-response';
 import { ApiDocs } from '../../decorators/api.decorator';
+import { GoogleAuthGuard } from '../../guards/google.guard';
 import { AuthToolsService } from '../../helpers/auth-helper';
 import { LoginResponse, LoginViewModel, RegisterRequest } from './auth-request';
 import { AuthService } from './auth.service';
@@ -84,5 +88,27 @@ export class AuthController extends BaseController {
   async activateAccount(): Promise<GenericResponse> {
     const payload = this.checkUserPayload(this.authToolService);
     return await this.authService.activateUserAccount(payload.id);
+  }
+
+  @Get('google/login')
+  @UseGuards(GoogleAuthGuard)
+  async handleGoogleLogin() {
+    return { "msg": "GoogleAuth" };
+  }
+
+  @Get('google/redirect')
+  @UseGuards(GoogleAuthGuard)
+  async handleGoogleRedirect() {
+    return { "msg": "OK" };
+  }
+
+  @Get('google/status')
+  getUserStatus(@Req() request: Request) {
+    console.log("🚀 ~ AuthController ~ getUserStatus ~ request", request);
+    if (request.user)
+      return { "msg": "Authenticated" };
+    else {
+      return { "msg": "Not authenticated" };
+    }
   }
 }

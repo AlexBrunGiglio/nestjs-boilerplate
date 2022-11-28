@@ -25,6 +25,16 @@ interface TokenResponse {
   refreshToken: string;
 }
 
+export type UserFromGoogle = {
+  id?: string;
+  name?: {
+    familyName: string;
+    givenName: string;
+  };
+  displayName: string;
+  emails?: { value: string; verified: 'true' | 'false'; }[];
+};
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -256,5 +266,30 @@ export class AuthService {
     return this.jwtService.verify(jwtToken, {
       secret: Environment.refresh_token_secret,
     });
+  }
+
+  async validateGoogleUser(user: UserFromGoogle) {
+    const newUser = new UserDto();
+    newUser.mail = user.emails[0].value;
+    newUser.firstname = user.name.givenName;
+    newUser.lastname = user.name.familyName;
+    newUser.username = user.displayName;
+    newUser.googleId = user.id;
+    console.log("🚀 ~ AuthService ~ validateGoogleUser ~ user", user);
+    console.log("🚀 ~ AuthService ~ validateGoogleUser ~ newUser", newUser);
+
+    const findUserResponse = await this.userService.findOne({ where: { mail: newUser.mail } });
+    if (findUserResponse.user?.id) {
+      return findUserResponse.user;
+    } else {
+      console.log('User not found');
+      try {
+        const createUserResponse = await this.userService.createOrUpdate(newUser);
+        if (createUserResponse.success)
+          return createUserResponse.user;
+      } catch (error) {
+        throw InternalServerErrorException;
+      }
+    }
   }
 }
