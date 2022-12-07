@@ -66,11 +66,11 @@ export class AuthController extends BaseController {
     summary: "Création d'un refresh token à partir d'un token",
     operationId: 'refreshToken',
     resStatus: HttpStatus.OK,
-    resType: GenericResponse,
+    resType: LoginResponse,
   })
   async refresh(
     @Param('token') refreshToken: string,
-  ): Promise<GenericResponse> {
+  ): Promise<LoginResponse> {
     return await this.authService.refreshToken(refreshToken);
   }
 

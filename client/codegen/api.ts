@@ -1560,7 +1560,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authControllerRefresh(token: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async authControllerRefresh(token: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerRefresh(token, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1620,7 +1620,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authControllerRefresh(token: string, options?: any): AxiosPromise<GenericResponse> {
+        authControllerRefresh(token: string, options?: any): AxiosPromise<LoginResponse> {
             return localVarFp.authControllerRefresh(token, options).then((request) => request(axios, basePath));
         },
         /**
